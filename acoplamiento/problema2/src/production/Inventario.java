@@ -1,29 +1,35 @@
 package production;
 
-
-// import hashmap
 import java.util.HashMap;
 
 public class Inventario {
-    public HashMap<String, Producto> productos;
+    private HashMap<String, Producto> productos;
 
     public Inventario(){
         this.productos = new HashMap<String, Producto>();
+
+        this.loadData();
     }
 
-    public static double darPrecio(Carrito carrito) {
-        double precio = 0;
-        for (Producto producto : carrito.productos) {
-            precio += producto.precio;
-        }
-        return precio;
+    private void loadData() {
+        Producto producto1 = new Producto("Producto 1", 1000);
+        Producto producto2 = new Producto("Producto 2", 2000);
+        Producto producto3 = new Producto("Producto 3", 3000);
+
+        this.agregarProducto(producto1);
+        this.agregarProducto(producto2);
+        this.agregarProducto(producto3);
     }
 
-    public void actualizarInventario(Carrito carrito) {
-        for (Producto producto : carrito.productos) {
-            this.productos.remove(producto.nombre);
-        }
+    private void agregarProducto(Producto producto) {
+        this.productos.put(producto.darNombre(), producto);
     }
 
+    public void eliminarProducto(String producto) {
+        this.productos.remove(producto);
+    }
 
+    public Producto darProducto(String producto) {
+        return this.productos.get(producto);
+    }
 }

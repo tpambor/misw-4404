@@ -1,42 +1,36 @@
 package production;
 
-import java.util.ArrayList;
-
 public class Cajero {
-    public static Inventario inventario;
+    private Inventario inventario;
 
-    public Cajero(Inventario inventario) {
-        this.inventario = inventario;
+    public Cajero() {
+        this.inventario = new Inventario();
     }
 
-    public static void procesarTransaccion(Carrito carrito) {
-        double precio = Inventario.darPrecio(carrito);
+    public void procesarTransaccion(Carrito carrito) {
+        double precio = this.calcularPrecio(carrito);
         System.out.println("El precio total es: " + precio);
-        inventario.actualizarInventario(carrito);
+
+        for (String producto : carrito.darProductos()) {
+            inventario.eliminarProducto(producto);
+        }
+    }
+
+    public double calcularPrecio(Carrito carrito) {
+        double precio = 0;
+        for (String producto : carrito.darProductos()) {
+            precio += inventario.darProducto(producto).darPrecio();
+        }
+        return precio;
     }
 
     public static void main(String[] args) {
-        Inventario inventario = new Inventario();
-        Cajero cajero = new Cajero(inventario);
-
-        Producto producto1 = new Producto("Producto 1", 1000);
-        Producto producto2 = new Producto("Producto 2", 2000);
-        Producto producto3 = new Producto("Producto 3", 3000);
-
-        inventario.productos.put(producto1.nombre, producto1);
-        inventario.productos.put(producto2.nombre, producto2);
-        inventario.productos.put(producto3.nombre, producto3);
-
+        Cajero cajero = new Cajero();
         Carrito carrito = new Carrito();
 
-        carrito.productos = new ArrayList<Producto>();
-        carrito.productos.add(producto1);
-        carrito.productos.add(producto2);
+        carrito.agregarProducto("Producto 1");
+        carrito.agregarProducto("Producto 2");
 
-        procesarTransaccion(carrito);
-
-
+        cajero.procesarTransaccion(carrito);
     }
-
-
 }

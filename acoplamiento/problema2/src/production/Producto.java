@@ -2,11 +2,19 @@ package production;
 
 
 public class Producto {
-    public String nombre;
-    public double precio;
+    private String nombre;
+    private double precio;
 
     public Producto(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
+    }
+
+    public double darPrecio() {
+        return this.precio;
+    }
+
+    public String darNombre() {
+        return this.nombre;
     }
 }
