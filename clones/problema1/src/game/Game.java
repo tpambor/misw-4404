@@ -6,90 +6,46 @@ import java.util.Random;
 
 public class Game {
 
+	public void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+	}
+
 	public void play() {
 		int player = 0;
-		String[][] board = {{"⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬜"},
-				{"⬜", "⬜", "⬜", "⬛", "⬛", "⬛", "⬜", "⬜"},
-				{"⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬛", "⬜"},
-				{"⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬛", "⬜"},
-				{"⬜", "⬜", "⬜", "⬜", "⬜", "⬛", "⬜", "⬜"},
-				{"⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬛", "⬜"},
-				{"⬜", "⬜", "⬜", "⬜", "⬜", "⬜", "⬛", "⬜"},
-				{"⬜", "⬜", "⬜", "⬛", "⬛", "⬛", "⬜", "⬜"}};
+		Board board = new Board();
 
-		for(String[] row : board) {
-			for(String elem : row)
-				System.out.print(" " + elem + " ");
-			System.out.println("");
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+		board.print();
+		sleep(1000);
 
-		for(int i=0; i<board[0].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[1].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[2].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[3].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[4].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[5].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[6].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[7].length; i++) board[0][i] = "⬜";
-		board[1][3] = "⬛"; board[1][4] = "⬛"; board[1][5] = "⬛";
-		board[2][2] = "⬛"; board[2][5] = "⬛"; 
-		board[3][6] = "⬛"; 
-		board[4][5] = "⬛"; 
-		board[5][4] = "⬛"; 
-		board[6][3] = "⬛"; 
-		board[7][2] = "⬛"; board[7][3] = "⬛"; board[7][4] = "⬛"; board[7][5] = "⬛"; board[7][6] = "⬛";
+		board.reset();
+		board.setField(1, 3, "⬛"); board.setField(1, 4, "⬛"); board.setField(1, 5, "⬛");
+		board.setField(2, 2, "⬛"); board.setField(2, 5, "⬛");
+		board.setField(3, 6, "⬛");
+		board.setField(4, 5, "⬛");
+		board.setField(5, 4, "⬛");
+		board.setField(6, 3, "⬛");
+		board.setField(7, 2, "⬛"); board.setField(7, 3, "⬛"); board.setField(7, 4, "⬛"); board.setField(7, 5, "⬛");
 
-		for(String[] row : board) {
-			for(String r : row)
-				System.out.print(" " + r + " ");
-			System.out.println("");
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+		board.print();
+		sleep(1000);
 
-		for(int i=0; i<board[0].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[1].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[2].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[3].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[4].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[5].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[6].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[7].length; i++) board[0][i] = "⬜";
-		board[1][4] = "⬛"; 
-		board[2][3] = "⬛"; board[2][3] = "⬛"; 
-		board[3][4] = "⬛"; 
-		board[4][4] = "⬛"; 
-		board[5][4] = "⬛"; 
-		board[6][4] = "⬛"; 
-		board[7][2] = "⬛"; board[7][3] = "⬛"; board[7][4] = "⬛"; board[7][5] = "⬛"; 
+		board.reset();
+		board.setField(1, 4, "⬛");
+		board.setField(2, 3, "⬛");
+		board.setField(3, 4, "⬛");
+		board.setField(4, 4, "⬛");
+		board.setField(5, 4, "⬛");
+		board.setField(6, 4, "⬛");
+		board.setField(7, 2, "⬛"); board.setField(7, 3, "⬛"); board.setField(7, 4, "⬛"); board.setField(7, 5, "⬛");
 
-		for(String[] row : board) {
-			for(String r : row)
-				System.out.print(" " + r + " ");
-			System.out.println("");
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+		board.print();
+		sleep(1000);
 
-		for(int i=0; i<board[0].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[1].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[2].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[3].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[4].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[5].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[6].length; i++) board[0][i] = "⬜";
-		for(int i=0; i<board[7].length; i++) board[0][i] = "⬜";
+		board.reset();
 
 		boolean playing = true;
 		while(playing) {
@@ -97,14 +53,10 @@ public class Game {
 				Random r = new Random();
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				int newCar = r.nextInt(8);
-				board[0][newCar] = "🚙";
-				board[7][player] = "🚗";
+				board.setField(0, newCar, "🚙");
+				board.setField(7, player, "🚗");
 				
-				for(String[] row : board) {
-					for(String a : row)
-						System.out.print(" " + a + " ");
-					System.out.println("");
-				}
+				board.print();
 
 				//input
 				String key = br.readLine();
@@ -113,21 +65,17 @@ public class Game {
 					playing = false;
 					break;
 				} else if(key.equals("a") && player > 0) {
-					board[7][player] = "⬜";
+					board.setField(7, player, "⬜");
 					player -= 1;
 				} else if(key.equals("d") && player < 7) {
-					board[7][player] = "⬜";
+					board.setField(7, player, "⬜");
 					player += 1;
 				}
-				if(board[7][player].equals("🚙") || board[6][player].equals("🚙")) {
+				if(board.getField(7, player).equals("🚙") || board.getField(6, player).equals("🚙")) {
 					playing = false;
 					System.out.println("Perdiste!");
 
-					//move cars down
-					for(int i=0; i<7; i++) 
-						board[7-i] = board[6-i];
-
-					for(int i=0; i<board[0].length; i++) board[0][i] = "⬜";
+					board.moveDown();
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
